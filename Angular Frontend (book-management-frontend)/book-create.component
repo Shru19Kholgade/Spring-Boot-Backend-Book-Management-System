@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import { BookService } from './book.service';
+
+@Component({
+  selector: 'app-book-create',
+  template: `
+    <form (ngSubmit)="onSubmit()">
+      <label>Title:</label>
+      <input type="text" [(ngModel)]="book.title" name="title"><br><br>
+      <label>Author:</label>
+      <input type="text" [(ngModel)]="book.author" name="author"><br><br>
+      <button type="submit">Create Book</button>
+    </form>
+  `
+})
+export class BookCreateComponent implements OnInit {
+  book = { title: '', author: '' };
+
+  constructor(private bookService: BookService) { }
+
+  ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    this.bookService.createBook(this.book).subscribe(response => {
+      console.log(response);
+    });
+  }
+}
