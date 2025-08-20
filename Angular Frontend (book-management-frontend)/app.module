@@ -1,0 +1,37 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AppComponent } from './app.component';
+import { BookListComponent } from './book-list/book-list.component';
+import { BookCreateComponent } from './book-create/book-create.component';
+import { BookEditComponent } from './book-edit/book-edit.component';
+import { BookDeleteComponent } from './book-delete/book-delete.component';
+
+const routes: Routes = [
+  { path: 'books', component: BookListComponent },
+  { path: 'books/create', component: BookCreateComponent },
+  { path: 'books/edit/:id', component: BookEditComponent },
+  { path: 'books/delete/:id', component: BookDeleteComponent }
+];
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    BookListComponent,
+    BookCreateComponent,
+    BookEditComponent,
+    BookDeleteComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
