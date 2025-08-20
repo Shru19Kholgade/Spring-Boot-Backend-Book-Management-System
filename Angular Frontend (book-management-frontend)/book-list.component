@@ -1,0 +1,23 @@
+import { Component, OnInit } from '@angular/core';
+import { BookService } from './book.service';
+
+@Component({
+  selector: 'app-book-list',
+  template: `
+    <ul>
+      <li *ngFor="let book of books">{{ book.title }} ({{ book.author }})</li>
+    </ul>
+  `
+})
+export class BookListComponent implements OnInit {
+  
+  books = [];
+  
+  constructor(private bookService: BookService) { }
+  
+  ngOnInit(): void {
+    this.bookService.getAllBooks().subscribe(response => {
+      this.books = response;
+    });
+  }
+}
